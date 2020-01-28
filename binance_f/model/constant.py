@@ -39,11 +39,10 @@ class TradeDirection:
 class OrderType:
     LIMIT = "LIMIT"
     MARKET = "MARKET"
-    STOP_LOSS = "STOP_LOSS"
-    STOP_LOSS_LIMIT = "STOP_LOSS_LIMIT"
+    STOP = "STOP"
+    STOP_MARKET = "STOP_MARKET"
     TAKE_PROFIT = "TAKE_PROFIT"
-    TAKE_PROFIT_LIMIT = "TAKE_PROFIT_LIMIT"
-    LIMIT_MAKER = "LIMIT_MAKER"
+    TAKE_RPOFIT_MARKET = "TAKE_RPOFIT_MARKET"
     INVALID = None
 
 class OrderRespType:
@@ -51,7 +50,7 @@ class OrderRespType:
     RESULT = "RESULT"
     FULL = "FULL"
     INVALID = None
-    
+
 
 class AccountType:
     SPOT = "spot"
@@ -251,7 +250,7 @@ class TransferType:
     ROLL_IN = "ROLL_IN"
     ROLL_OUT = "ROLL_OUT"
     INVALID = None
-    
+
 
 class SideEffectType:
     NO_SIDE_EFFECT = "NO_SIDE_EFFECT"
