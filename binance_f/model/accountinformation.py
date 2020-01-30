@@ -33,6 +33,7 @@ class Position:
         self.openOrderInitialMargin = 0.0
         self.positionInitialMargin = 0.0
         self.symbol = ""
+        self.leverage = 0.0
         self.unrealizedProfit = 0.0
         self.isolated = False
 
@@ -41,6 +42,7 @@ class Position:
         result = Position()
         result.initialMargin = json_data.get_float("initialMargin")
         result.maintMargin = json_data.get_float("maintMargin")
+        result.leverage = json_data.get_float("leverage")
         result.openOrderInitialMargin = json_data.get_float("openOrderInitialMargin")
         result.positionInitialMargin = json_data.get_float("positionInitialMargin")
         result.symbol = json_data.get_string("symbol")

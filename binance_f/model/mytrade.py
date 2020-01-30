@@ -23,7 +23,7 @@ class MyTrade:
         result.commission = json_data.get_float("commission")
         result.commissionAsset = json_data.get_string("commissionAsset")
         result.counterPartyId = json_data.get_int_or_default("counterPartyId", None)
-        result.orderId = json_data.get_int("orderId")
+        result.id = json_data.get_int("id")
         result.isMaker = json_data.get_boolean("maker")
         result.orderId = json_data.get_int("orderId")
         result.price = json_data.get_float("price")
