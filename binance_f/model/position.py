@@ -11,7 +11,7 @@ class Position:
         self.symbol = ""
         self.unrealizedProfit = 0.0
         self.marginType = ""
-        self.isolatedMargin = ""
+        self.isolatedMargin = 0.0
 
     @staticmethod
     def json_parse(json_data):
