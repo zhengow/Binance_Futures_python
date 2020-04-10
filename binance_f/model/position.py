@@ -12,6 +12,8 @@ class Position:
         self.unrealizedProfit = 0.0
         self.marginType = ""
         self.isolatedMargin = 0.0
+        self.positionSide = ""
+
 
     @staticmethod
     def json_parse(json_data):
@@ -27,4 +29,5 @@ class Position:
         result.unrealizedProfit = json_data.get_float("unRealizedProfit")
         result.marginType = json_data.get_string("marginType")
         result.isolatedMargin = json_data.get_float("isolatedMargin")
+        result.positionSide = json_data.get_string("positionSide")
         return result
