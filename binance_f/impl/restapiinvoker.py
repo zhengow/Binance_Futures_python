@@ -20,31 +20,42 @@ def check_response(json_wrapper):
         if code != 200:
             raise BinanceApiException(BinanceApiException.EXEC_ERROR, "[Executing] " + str(code) + ": " + msg)
 
+def get_limits_usage(response):
+    limits = {}
+    limits_headers = ["X-MBX-USED-WEIGHT-", "X-MBX-ORDER-COUNT-" ]  # Limit headers to catch
+    for key,value in response.headers.items():
+        if any([key.startswith(h) for h in limits_headers]):
+            limits[key] = value
+    return limits
 
 def call_sync(request):
     if request.method == "GET":
         response = requests.get(request.host + request.url, headers=request.header)
+        limits = get_limits_usage(response)
         json_wrapper = parse_json_from_string(response.text)
         print(response.text)
         check_response(json_wrapper)
-        return request.json_parser(json_wrapper)
+        return (request.json_parser(json_wrapper),limits)
     elif request.method == "POST":
         response = requests.post(request.host + request.url, headers=request.header)
+        limits = get_limits_usage(response)
         json_wrapper = parse_json_from_string(response.text)
         print(response.text)
         check_response(json_wrapper)
-        return request.json_parser(json_wrapper)
+        return (request.json_parser(json_wrapper),limits)
     elif request.method == "DELETE":
         response = requests.delete(request.host + request.url, headers=request.header)
+        limits = get_limits_usage(response)
         json_wrapper = parse_json_from_string(response.text)
         print(response.text)
         check_response(json_wrapper)
-        return request.json_parser(json_wrapper)
+        return (request.json_parser(json_wrapper),limits)
     elif request.method == "PUT":
         response = requests.put(request.host + request.url, headers=request.header)
+        limits = get_limits_usage(response)
         json_wrapper = parse_json_from_string(response.text)
         print(response.text)
         check_response(json_wrapper)
-        return request.json_parser(json_wrapper)
+        return (request.json_parser(json_wrapper),limits)
 
 
