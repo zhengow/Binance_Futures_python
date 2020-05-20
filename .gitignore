@@ -2,3 +2,7 @@
 build/*
 dist/*
 binance_futures.egg-info/*
+
+# jupyter
+*.ipynb_checkpoints
+*.ipynb
