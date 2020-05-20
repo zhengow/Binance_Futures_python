@@ -24,6 +24,7 @@ class Position:
         self.unrealizedPnl = 0.0
         self.marginType = ""
         self.isolatedWallet = 0.0
+        self.positionSide = ""
 
     @staticmethod
     def json_parse(json_data):
@@ -35,6 +36,7 @@ class Position:
         result.unrealizedPnl = json_data.get_float("up")
         result.marginType = json_data.get_string("mt")
         result.isolatedWallet = json_data.get_float("iw")
+        result.positionSide = json_data.get_string("ps")
         return result
 
 
