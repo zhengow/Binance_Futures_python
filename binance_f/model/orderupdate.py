@@ -27,7 +27,12 @@ class OrderUpdate:
         self.isMarkerSide = None
         self.isReduceOnly = None
         self.workingType = 0.0
-  
+        self.isClosePosition = None
+        self.activationPrice = 0.0
+        self.callbackRate = 0.0
+        self.positionSide = None
+
+
     @staticmethod
     def json_parse(json_data):
         result = OrderUpdate()
@@ -60,5 +65,9 @@ class OrderUpdate:
         result.isMarkerSide = data_group.get_boolean("m")
         result.isReduceOnly = data_group.get_boolean("R")
         result.workingType = data_group.get_string("wt")
-        
+        result.isClosePosition = data_group.get_boolean("cp")
+        result.activationPrice = data_group.get_float_or_default("AP", None)
+        result.callbackRate = data_group.get_float_or_default("cr", None)
+        result.positionSide = data_group.get_string("ps")
+
         return result
