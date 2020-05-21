@@ -6,3 +6,6 @@ binance_futures.egg-info/*
 # jupyter
 *.ipynb_checkpoints
 *.ipynb
+
+# Mac system
+.DS_Store

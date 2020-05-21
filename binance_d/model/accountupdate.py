@@ -24,6 +24,7 @@ class Position:
         self.unrealizedPnl = 0.0
         self.marginType = ""
         self.isolatedWallet = 0.0
+        self.positionSide = ""
 
     @staticmethod
     def json_parse(json_data):
@@ -35,6 +36,7 @@ class Position:
         result.unrealizedPnl = json_data.get_float("up")
         result.marginType = json_data.get_string("mt")
         result.isolatedWallet = json_data.get_float("iw")
+        result.positionSide = json_data.get_string("ps")
         return result
 
 
@@ -61,11 +63,12 @@ class AccountUpdate:
             element = Balance.json_parse(item)
             element_list.append(element)
         result.balances = element_list
-        
-        element_list = list()
-        data_list = data_group.get_array("P")
-        for item in data_list.get_items():
-            element = Position.json_parse(item)
-            element_list.append(element)
-        result.positions = element_list
+       
+        if data_group.contain_key("P"):
+            element_list = list()
+            data_list = data_group.get_array("P")
+            for item in data_list.get_items():
+                element = Position.json_parse(item)
+                element_list.append(element)
+            result.positions = element_list
         return result
