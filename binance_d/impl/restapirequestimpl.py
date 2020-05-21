@@ -319,14 +319,11 @@ class RestApiRequestImpl(object):
 
         def parse(json_wrapper):
             result = list()
-            if symbol:
-                element = SymbolOrderBook.json_parse(json_wrapper)
+            print('datalist')
+            data_list = json_wrapper.convert_2_array()
+            for item in data_list.get_items():
+                element = SymbolOrderBook.json_parse(item)
                 result.append(element)
-            else:
-                data_list = json_wrapper.convert_2_array()
-                for item in data_list.get_items():
-                    element = SymbolOrderBook.json_parse(item)
-                    result.append(element)
             return result
 
         request.json_parser = parse
