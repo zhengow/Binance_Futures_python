@@ -18,11 +18,17 @@ class Symbol:
 
     def __init__(self):
         self.symbol = ""
-        self.status = ""
+        self.pair = ""
+        self.contractType = ""
+        self.onboardDate = ""
+        self.contractStatus = ""
+        self.contractSize = 0.0
+        self.deliveryDate = ""
         self.maintMarginPercent = 0.0
         self.requiredMarginPercent = 0.0
         self.baseAsset = ""
         self.quoteAsset = ""
+        self.marginAsset = ""
         self.pricePrecision = None
         self.quantityPrecision = None
         self.baseAssetPrecision = None
@@ -79,15 +85,21 @@ class ExchangeInformation:
         for item in data_list.get_items():
             element = Symbol()
             element.symbol = item.get_string("symbol")
-            element.status = item.get_string("status")
+            element.pair = item.get_string("pair")
+            element.contractType = item.get_string("contractType")
+            element.deliveryDate = item.get_string("deliveryDate")
+            element.onboardDate = item.get_string("onboardDate")
+            element.contractStatus = item.get_string("contractStatus")
+            element.contractSize = item.get_float("contractSize")
             element.maintMarginPercent = item.get_float("maintMarginPercent")
             element.requiredMarginPercent = item.get_float("requiredMarginPercent")
             element.baseAsset = item.get_string("baseAsset")
             element.quoteAsset = item.get_string("quoteAsset")
+            element.marginAsset = item.get_string("marginAsset")
             element.pricePrecision = item.get_int("pricePrecision")
             element.quantityPrecision = item.get_int("quantityPrecision")
-            element.baseAssetPrecision = item.get_int("baseAssetPrecision")
-            element.quotePrecision = item.get_int("quotePrecision")
+            # element.baseAssetPrecision = item.get_int("baseAssetPrecision")
+            # element.quotePrecision = item.get_int("quotePrecision")
             element.orderTypes = item.get_object("orderTypes").convert_2_list()
             element.timeInForce = item.get_object("timeInForce").convert_2_list()
 

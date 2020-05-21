@@ -236,7 +236,11 @@ class RestApiRequestImpl(object):
         request = self.__create_request_by_get("/dapi/v1/premiumIndex", builder)
 
         def parse(json_wrapper):
-            result = MarkPrice.json_parse(json_wrapper)
+            result = list()
+            data_list = json_wrapper.convert_2_array()
+            for item in data_list.get_items():
+                element = MarkPrice.json_parse(item)
+                result.append(element)
             return result
 
         request.json_parser = parse
@@ -533,21 +537,21 @@ class RestApiRequestImpl(object):
         request.json_parser = parse
         return request
 
-    def get_balance(self):
-        builder = UrlParamsBuilder()
+    # def get_balance(self):
+    #     builder = UrlParamsBuilder()
 
-        request = self.__create_request_by_get_with_signature("/dapi/v1/balance", builder)
+    #     request = self.__create_request_by_get_with_signature("/dapi/v1/balance", builder)
 
-        def parse(json_wrapper):
-            result = list()
-            data_list = json_wrapper.convert_2_array()
-            for item in data_list.get_items():
-                element = Balance.json_parse(item)
-                result.append(element)
-            return result
+    #     def parse(json_wrapper):
+    #         result = list()
+    #         data_list = json_wrapper.convert_2_array()
+    #         for item in data_list.get_items():
+    #             element = Balance.json_parse(item)
+    #             result.append(element)
+    #         return result
 
-        request.json_parser = parse
-        return request
+    #     request.json_parser = parse
+    #     return request
 
     def get_account_information(self):
         builder = UrlParamsBuilder()

@@ -319,15 +319,15 @@ class RequestClient(object):
         self.refresh_limits(response[1])
         return response[0]
 
-    def get_balance(self) -> any:
-        """
-        Future Account Balance (USER_DATA)
+    # def get_balance(self) -> any:
+    #     """
+    #     Future Account Balance (USER_DATA)
 
-        Get /dapi/v1/balance (HMAC SHA256)
-        """
-        response = call_sync(self.request_impl.get_balance())
-        self.refresh_limits(response[1])
-        return response[0]
+    #     Get /dapi/v1/balance (HMAC SHA256)
+    #     """
+    #     response = call_sync(self.request_impl.get_balance())
+    #     self.refresh_limits(response[1])
+    #     return response[0]
 
     def get_account_information(self) -> any:
         """
