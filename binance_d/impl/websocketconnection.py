@@ -141,6 +141,11 @@ class WebsocketConnection:
 
     def on_message(self, message):
         self.last_receive_time = get_current_timestamp()
+        # print('Type of message is', type(message))
+        if not isinstance(message, str):
+            # print('Decompressing...')
+            message = gzip.decompress(message).decode('utf-8')
+        # print(message)
         json_wrapper = parse_json_from_string(message)
 
         if json_wrapper.contain_key("status") and json_wrapper.get_string("status") != "ok":
