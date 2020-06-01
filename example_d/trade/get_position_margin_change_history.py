@@ -4,6 +4,6 @@ from binance_d.base.printobject import *
 from binance_d.model.constant import *
 
 request_client = RequestClient(api_key=g_api_key, secret_key=g_secret_key)
-result = request_client.get_position_margin_change_history(symbol="BTCUSD_200925")
+result = request_client.get_position_margin_change_history(symbol="BTCUSD_200626")
 
 PrintBasic.print_obj(result)

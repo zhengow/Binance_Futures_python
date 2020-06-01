@@ -4,7 +4,7 @@ from binance_d.base.printobject import *
 
 request_client = RequestClient(api_key=g_api_key, secret_key=g_secret_key)
 
-aggregate_trades_list = request_client.get_aggregate_trades_list(symbol="BTCUSD_200925", fromId=None, 
+aggregate_trades_list = request_client.get_aggregate_trades_list(symbol="BTCUSD_200626", fromId=None, 
 												startTime=None, endTime=None, limit=10)
 
 print("======= Compressed/Aggregate Trades List =======")

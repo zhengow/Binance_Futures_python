@@ -42,6 +42,6 @@ def error(e: 'BinanceApiException'):
     print(e.error_code + e.error_message)
 
 # Valid limit values are 5, 10, or 20 
-sub_client.subscribe_book_depth_event("BTCUSD_200925", 10, callback, error, update_time=UpdateTime.FAST)
-#sub_client.subscribe_book_depth_event("BTCUSD_200925", 10, callback, error, update_time=UpdateTime.NORMAL)
-#sub_client.subscribe_book_depth_event("BTCUSD_200925", 10, callback, error)
+sub_client.subscribe_book_depth_event("BTCUSD_200626", 10, callback, error, update_time=UpdateTime.FAST)
+#sub_client.subscribe_book_depth_event("BTCUSD_200626", 10, callback, error, update_time=UpdateTime.NORMAL)
+#sub_client.subscribe_book_depth_event("BTCUSD_200626", 10, callback, error)

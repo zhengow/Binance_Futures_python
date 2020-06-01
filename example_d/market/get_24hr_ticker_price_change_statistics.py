@@ -5,7 +5,7 @@ from binance_d.base.printobject import *
 request_client = RequestClient(api_key=g_api_key, secret_key=g_secret_key)
 
 result = request_client.get_ticker_price_change_statistics()
-# result = request_client.get_ticker_price_change_statistics(symbol="BTCUSD_200925")
+# result = request_client.get_ticker_price_change_statistics(symbol="BTCUSD_200626")
 
 print("======= 24hr Ticker Price Change Statistics =======")
 PrintMix.print_data(result)

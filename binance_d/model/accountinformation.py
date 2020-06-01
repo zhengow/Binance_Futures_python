@@ -78,7 +78,10 @@ class AccountInformation:
         result.canTrade = json_data.get_boolean("canTrade")
         result.canWithdraw = json_data.get_boolean("canWithdraw")
         result.feeTier = json_data.get_float("feeTier")
-        result.maxWithdrawAmount = json_data.get_float("maxWithdrawAmount")
+        try:
+            result.maxWithdrawAmount = json_data.get_float("maxWithdrawAmount")
+        except:
+            result.maxWithdrawAmount = json_data.get_string("maxWithdrawAmount")
         # result.totalInitialMargin = json_data.get_float("totalInitialMargin")
         # result.totalMaintMargin = json_data.get_float("totalMaintMargin")
         # result.totalMarginBalance = json_data.get_float("totalMarginBalance")
