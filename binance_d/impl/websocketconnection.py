@@ -141,14 +141,16 @@ class WebsocketConnection:
 
     def on_message(self, message):
         self.last_receive_time = get_current_timestamp()
-        # print('Type of message is', type(message))
+        print('Type of message is', type(message))
         if not isinstance(message, str):
-            # print('Decompressing...')
+            print('Decompressing...')
             message = gzip.decompress(message).decode('utf-8')
-        # print(message)
+        print(message)
         json_wrapper = parse_json_from_string(message)
 
-        if json_wrapper.contain_key("status") and json_wrapper.get_string("status") != "ok":
+        if json_wrapper.contain_key("method") and json_wrapper.get_string("method") == "PING":
+            self.__process_ping_on_new_spec(json_wrapper.get_int("E"))
+        elif json_wrapper.contain_key("status") and json_wrapper.get_string("status") != "ok":
             error_code = json_wrapper.get_string_or_default("err-code", "Unknown error")
             error_msg = json_wrapper.get_string_or_default("err-msg", "Unknown error")
             self.on_error(error_code + ": " + error_msg)
@@ -192,6 +194,15 @@ class WebsocketConnection:
 
         if self.request.auto_close:
             self.close()
+
+    def __process_ping_on_new_spec(self, ping_ts):
+        """Respond on explicit ping frame
+        """
+        print("Responding to explicit PING...")
+        respond_pong_msg = "{\"method\":\"PONG\",\"E\":" + str(ping_ts) + "}"
+        self.send(respond_pong_msg)
+        print(respond_pong_msg)
+        return
 
     def __process_ping_on_trading_line(self, ping_ts):
         self.send("{\"op\":\"pong\",\"ts\":" + str(ping_ts) + "}")
