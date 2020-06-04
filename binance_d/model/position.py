@@ -4,7 +4,7 @@ class Position:
         self.entryPrice = 0.0
         self.isAutoAddMargin = False
         self.leverage = 0.0
-        self.maxNotionalValue = 0.0
+        self.maxQty = 0.0
         self.liquidationPrice = 0.0
         self.markPrice = 0.0
         self.positionAmt = 0.0
@@ -21,7 +21,7 @@ class Position:
         result.entryPrice = json_data.get_float("entryPrice")
         result.isAutoAddMargin = json_data.get_boolean("isAutoAddMargin")
         result.leverage = json_data.get_float("leverage")
-        result.maxNotionalValue = json_data.get_float("maxNotionalValue")
+        result.maxQty = json_data.get_float("maxQty")
         result.liquidationPrice = json_data.get_float("liquidationPrice")
         result.markPrice = json_data.get_float("markPrice")
         result.positionAmt = json_data.get_float("positionAmt")

@@ -2,7 +2,7 @@ class Order:
 
     def __init__(self):
         self.clientOrderId = ""
-        self.cumQuote = 0.0
+        self.cumBase = 0.0
         self.executedQty = None
         self.orderId = None
         self.origQty = None
@@ -27,7 +27,7 @@ class Order:
     def json_parse(json_data):
         result = Order()
         result.clientOrderId = json_data.get_string("clientOrderId")
-        result.cumQuote = json_data.get_float("cumQuote")
+        result.cumBase = json_data.get_float("cumBase")
         result.executedQty = json_data.get_float_or_default("executedQty", None)
         result.orderId = json_data.get_int("orderId")
         result.origQty = json_data.get_float("origQty")
