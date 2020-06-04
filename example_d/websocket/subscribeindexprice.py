@@ -29,4 +29,4 @@ def callback(data_type: 'SubscribeMessageType', event: 'any'):
 def error(e: 'BinanceApiException'):
     print(e.error_code + e.error_message)
 
-sub_client.subscribe_symbol_liquidation_event("btcusd_200925", callback, error)
+sub_client.subscribe_index_price_event("btcusd", callback, error)

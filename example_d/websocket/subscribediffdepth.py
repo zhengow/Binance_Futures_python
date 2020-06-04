@@ -41,7 +41,7 @@ def callback(data_type: 'SubscribeMessageType', event: 'any'):
 def error(e: 'BinanceApiException'):
     print(e.error_code + e.error_message)
 
-sub_client.subscribe_diff_depth_event("BTCUSD_200626", callback, error, update_time=UpdateTime.REALTIME)
-#sub_client.subscribe_diff_depth_event("BTCUSD_200626", callback, error, update_time=UpdateTime.FAST)
-#sub_client.subscribe_diff_depth_event("BTCUSD_200626", callback, error, update_time=UpdateTime.NORMAL)
-#sub_client.subscribe_diff_depth_event("BTCUSD_200626", callback, error)
+sub_client.subscribe_diff_depth_event("btcusd_200925", callback, error, update_time=UpdateTime.REALTIME)
+#sub_client.subscribe_diff_depth_event("btcusd_200925", callback, error, update_time=UpdateTime.FAST)
+#sub_client.subscribe_diff_depth_event("btcusd_200925", callback, error, update_time=UpdateTime.NORMAL)
+#sub_client.subscribe_diff_depth_event("btcusd_200925", callback, error)

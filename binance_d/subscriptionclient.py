@@ -75,6 +75,17 @@ class SubscriptionClient(object):
         request = self.websocket_request_impl.subscribe_aggregate_trade_event(symbol, callback, error_handler)
         self.__create_connection(request)
 
+    def subscribe_index_price_event(self, pair: 'str', callback, error_handler=None):
+        """
+        Index Price Stream
+
+        Index price for a single symbol pushed every 3 secends.
+
+        Stream Name: <pair>@indexPrice
+        """
+        request = self.websocket_request_impl.subscribe_index_price_event(pair, callback, error_handler)
+        self.__create_connection(request)
+
     def subscribe_mark_price_event(self, symbol: 'str', callback, error_handler=None):
         """
         Mark Price Stream
@@ -85,7 +96,19 @@ class SubscriptionClient(object):
         """
         request = self.websocket_request_impl.subscribe_mark_price_event(symbol, callback, error_handler)
         self.__create_connection(request)
-    
+
+    def subscribe_continuous_candlestick_event(self, pair: 'str', contract_type: 'str', interval: 'CandlestickInterval', callback,
+                                    error_handler=None):
+        """
+        Continuous Kline/Candlestick Streams
+
+        The continuous Kline/Candlestick Stream push updates to the current klines/candlestick every 250 milliseconds (if existing).
+
+        Stream Name: <pair><contractType>@continuousKline_<interval>
+        """
+        request = self.websocket_request_impl.subscribe_continuous_candlestick_event(pair, contract_type, interval, callback, error_handler)
+        self.__create_connection(request)
+
     def subscribe_candlestick_event(self, symbol: 'str', interval: 'CandlestickInterval', callback,
                                     error_handler=None):
         """
@@ -96,6 +119,30 @@ class SubscriptionClient(object):
         Stream Name: <symbol>@kline_<interval>
         """
         request = self.websocket_request_impl.subscribe_candlestick_event(symbol, interval, callback, error_handler)
+        self.__create_connection(request)
+           
+    def subscribe_mark_price_candlestick_event(self, symbol: 'str', interval: 'CandlestickInterval', callback,
+                                    error_handler=None):
+        """
+        Mark price Kline/Candlestick Streams
+
+        The mark price Kline/Candlestick Stream push updates to the current mark price klines/candlestick every 250 milliseconds (if existing).
+
+        Stream Name: <symbol>@markPriceKline_<interval>
+        """
+        request = self.websocket_request_impl.subscribe_mark_price_candlestick_event(symbol, interval, callback, error_handler)
+        self.__create_connection(request)
+
+    def subscribe_index_candlestick_event(self, pair: 'str', interval: 'CandlestickInterval', callback,
+                                    error_handler=None):
+        """
+        Index Kline/Candlestick Streams
+
+        The index Kline/Candlestick Stream push updates to the current index klines/candlestick every 250 milliseconds (if existing).
+
+        Stream Name: <pair>@indexPriceKline_<interval>
+        """
+        request = self.websocket_request_impl.subscribe_index_candlestick_event(pair, interval, callback, error_handler)
         self.__create_connection(request)
            
     def subscribe_symbol_miniticker_event(self, symbol: 'str', callback, error_handler=None):

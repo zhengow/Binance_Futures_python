@@ -6,6 +6,7 @@ from binance_d.model.trade import Trade
 from binance_d.model.aggregatetrade import AggregateTrade
 from binance_d.model.candlestick import Candlestick
 from binance_d.model.markprice import MarkPrice
+from binance_d.model.indexprice import IndexPrice
 from binance_d.model.openinterest import OpenInterest
 from binance_d.model.fundingrate import FundingRate
 from binance_d.model.tickerpricechangestatistics import TickerPriceChangeStatistics
@@ -14,7 +15,11 @@ from binance_d.model.symbolorderbook import SymbolOrderBook
 from binance_d.model.liquidationorder import LiquidationOrder
 from binance_d.model.aggregatetradeevent import AggregateTradeEvent
 from binance_d.model.markpriceevent import MarkPriceEvent
+from binance_d.model.indexpriceevent import IndexPriceEvent
 from binance_d.model.candlestickevent import CandlestickEvent
+from binance_d.model.continuouscandlestickevent import ContinuousCandlestickEvent
+from binance_d.model.indexcandlestickevent import IndexCandlestickEvent
+from binance_d.model.markpricecandlestickevent import MarkPriceCandlestickEvent
 from binance_d.model.symbolminitickerevent import SymbolMiniTickerEvent
 from binance_d.model.symboltickerevent import SymbolTickerEvent
 from binance_d.model.symbolbooktickerevent import SymbolBookTickerEvent

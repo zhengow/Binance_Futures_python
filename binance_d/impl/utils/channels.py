@@ -11,6 +11,14 @@ def aggregate_trade_channel(symbol):
     channel["method"] = "SUBSCRIBE"
     return json.dumps(channel)
 
+def index_price_channel(pair):
+    channel = dict()
+    channel["params"] = list()
+    channel["params"].append(pair + "@indexPrice")
+    channel["id"] = get_current_timestamp()
+    channel["method"] = "SUBSCRIBE"
+    return json.dumps(channel)
+
 def mark_price_channel(symbol):
     channel = dict()
     channel["params"] = list()
@@ -19,10 +27,34 @@ def mark_price_channel(symbol):
     channel["method"] = "SUBSCRIBE"
     return json.dumps(channel)
 
+def continuous_kline_channel(pair, contract_type, interval):
+    channel = dict()
+    channel["params"] = list()
+    channel["params"].append(pair + '_' + contract_type + "@continuousKline_" + interval)
+    channel["id"] = get_current_timestamp()
+    channel["method"] = "SUBSCRIBE"
+    return json.dumps(channel)
+
 def kline_channel(symbol, interval):
     channel = dict()
     channel["params"] = list()
     channel["params"].append(symbol + "@kline_" + interval)
+    channel["id"] = get_current_timestamp()
+    channel["method"] = "SUBSCRIBE"
+    return json.dumps(channel)
+
+def mark_price_kline_channel(symbol, interval):
+    channel = dict()
+    channel["params"] = list()
+    channel["params"].append(symbol + "@markPriceKline_" + interval)
+    channel["id"] = get_current_timestamp()
+    channel["method"] = "SUBSCRIBE"
+    return json.dumps(channel)
+
+def index_kline_channel(pair, interval):
+    channel = dict()
+    channel["params"] = list()
+    channel["params"].append(pair + "@indexPriceKline_" + interval)
     channel["id"] = get_current_timestamp()
     channel["method"] = "SUBSCRIBE"
     return json.dumps(channel)

@@ -33,4 +33,4 @@ def callback(data_type: 'SubscribeMessageType', event: 'any'):
 def error(e: 'BinanceApiException'):
     print(e.error_code + e.error_message)
 
-sub_client.subscribe_candlestick_event("BTCUSD_200626", CandlestickInterval.MIN1, callback, error)
+sub_client.subscribe_candlestick_event("btcusd_200925", CandlestickInterval.MIN1, callback, error)

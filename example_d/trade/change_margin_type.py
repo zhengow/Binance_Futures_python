@@ -4,6 +4,6 @@ from binance_d.base.printobject import *
 from binance_d.model.constant import *
 
 request_client = RequestClient(api_key=g_api_key, secret_key=g_secret_key)
-result = request_client.change_margin_type(symbol="BTCUSD_200626", marginType=FuturesMarginType.ISOLATED)
+result = request_client.change_margin_type(symbol="btcusd_200925", marginType=FuturesMarginType.ISOLATED)
 
 PrintBasic.print_obj(result)

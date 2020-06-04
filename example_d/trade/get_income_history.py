@@ -4,5 +4,5 @@ from binance_d.base.printobject import *
 from binance_d.model.constant import *
 
 request_client = RequestClient(api_key=g_api_key, secret_key=g_secret_key)
-result = request_client.get_income_history(symbol="BTCUSD_200626")
+result = request_client.get_income_history(symbol="btcusd_200925")
 PrintMix.print_data(result)

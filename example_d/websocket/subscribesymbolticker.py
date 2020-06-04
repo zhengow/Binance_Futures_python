@@ -29,4 +29,4 @@ def callback(data_type: 'SubscribeMessageType', event: 'any'):
 def error(e: 'BinanceApiException'):
     print(e.error_code + e.error_message)
 
-sub_client.subscribe_symbol_ticker_event("BTCUSD_200626", callback, error)
+sub_client.subscribe_symbol_ticker_event("btcusd_200925", callback, error)

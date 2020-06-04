@@ -5,6 +5,7 @@ class MarkPriceEvent:
         self.eventTime = 0
         self.symbol = ""
         self.markPrice = 0.0
+        self.estSettlmentPrice = 0.0
 
     @staticmethod
     def json_parse(json_data):
@@ -13,4 +14,5 @@ class MarkPriceEvent:
         result.eventTime = json_data.get_int("E")
         result.symbol = json_data.get_string("s")
         result.markPrice = json_data.get_float("p")
+        result.estSettlmentPrice = json_data.get_float("P")
         return result
