@@ -13,7 +13,7 @@ class TickerPriceChangeStatistics:
         self.highPrice = 0.0
         self.lowPrice = 0.0
         self.volume = 0.0
-        self.quoteVolume = 0.0
+        self.baseVolume = 0.0
         self.openTime = 0
         self.closeTime = 0
         self.firstId = None
@@ -33,7 +33,7 @@ class TickerPriceChangeStatistics:
         result.highPrice = json_data.get_float("highPrice")
         result.lowPrice = json_data.get_float("lowPrice")
         result.volume = json_data.get_float("volume")
-        result.quoteVolume = json_data.get_float("quoteVolume")
+        result.baseVolume = json_data.get_float("baseVolume")
         result.openTime = json_data.get_int("openTime")
         result.closeTime = json_data.get_int("closeTime")
         result.firstId = json_data.get_int("firstId")

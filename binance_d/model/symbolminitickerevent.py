@@ -8,8 +8,8 @@ class SymbolMiniTickerEvent:
         self.close = 0.0
         self.high = 0.0
         self.low = 0.0
-        self.totalTradedBaseAssetVolume = 0.0
         self.totalTradedQuoteAssetVolume = 0.0
+        self.totalTradedBaseAssetVolume = 0.0
 
     @staticmethod
     def json_parse(json_wrapper):
@@ -21,6 +21,6 @@ class SymbolMiniTickerEvent:
         result.close = json_wrapper.get_float("c")
         result.high = json_wrapper.get_float("h")
         result.low = json_wrapper.get_float("l")
-        result.totalTradedBaseAssetVolume = json_wrapper.get_float("v")
-        result.totalTradedQuoteAssetVolume = json_wrapper.get_float("q")
+        result.totalTradedQuoteAssetVolume = json_wrapper.get_float("v")
+        result.totalTradedBaseAssetVolume = json_wrapper.get_float("q")
         return result
