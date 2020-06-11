@@ -98,8 +98,8 @@ class ExchangeInformation:
             element.marginAsset = item.get_string("marginAsset")
             element.pricePrecision = item.get_int("pricePrecision")
             element.quantityPrecision = item.get_int("quantityPrecision")
-            # element.baseAssetPrecision = item.get_int("baseAssetPrecision")
-            # element.quotePrecision = item.get_int("quotePrecision")
+            element.baseAssetPrecision = item.get_int("baseAssetPrecision")
+            element.quotePrecision = item.get_int("quotePrecision")
             element.orderTypes = item.get_object("orderTypes").convert_2_list()
             element.timeInForce = item.get_object("timeInForce").convert_2_list()
 

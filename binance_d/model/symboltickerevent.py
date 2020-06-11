@@ -12,8 +12,8 @@ class SymbolTickerEvent:
         self.open = 0.0
         self.high = 0.0
         self.low = 0.0
-        self.totalTradedBaseAssetVolume = 0.0
         self.totalTradedQuoteAssetVolume = 0.0
+        self.totalTradedBaseAssetVolume = 0.0
         self.openTime = 0
         self.closeTime = 0
         self.firstId = None
@@ -34,8 +34,8 @@ class SymbolTickerEvent:
         ticker_event.open = json_wrapper.get_float("o")
         ticker_event.high = json_wrapper.get_float("h")
         ticker_event.low = json_wrapper.get_float("l")
-        ticker_event.totalTradedBaseAssetVolume = json_wrapper.get_float("v")
-        ticker_event.totalTradedQuoteAssetVolume = json_wrapper.get_float("q")
+        ticker_event.totalTradedQuoteAssetVolume = json_wrapper.get_float("v")
+        ticker_event.totalTradedBaseAssetVolume = json_wrapper.get_float("q")
         ticker_event.openTime = json_wrapper.get_int("O")
         ticker_event.closeTime = json_wrapper.get_int("C")
         ticker_event.firstId = json_wrapper.get_int("F")

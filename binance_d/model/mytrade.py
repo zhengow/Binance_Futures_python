@@ -10,7 +10,7 @@ class MyTrade:
         self.orderId = None
         self.price = 0.0
         self.qty = 0.0
-        self.quoteQty = 0.0
+        self.baseQty = 0.0
         self.realizedPnl = 0.0
         self.side = ""
         self.symbol = ""
@@ -28,7 +28,7 @@ class MyTrade:
         result.orderId = json_data.get_int("orderId")
         result.price = json_data.get_float("price")
         result.qty = json_data.get_float("qty")
-        result.quoteQty = json_data.get_float("quoteQty")
+        result.baseQty = json_data.get_float("baseQty")
         result.realizedPnl = json_data.get_float("realizedPnl")
         result.side = json_data.get_string("side")
         result.symbol = json_data.get_string("symbol")

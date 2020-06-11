@@ -14,9 +14,9 @@ class Candlestick:
         self.volume = 0.0
         self.numTrades = 0
         self.isClosed = False
-        self.quoteAssetVolume = 0.0
-        self.takerBuyBaseAssetVolume = 0.0
+        self.baseVolume = 0.0
         self.takerBuyQuoteAssetVolume = 0.0
+        self.takerBuyBaseAssetVolume = 0.0
         self.ignore = 0.0
 
     @staticmethod
@@ -35,9 +35,9 @@ class Candlestick:
         data_obj.volume = json_data.get_float("v")
         data_obj.numTrades = json_data.get_int("n")
         data_obj.isClosed = json_data.get_boolean("x")
-        data_obj.quoteAssetVolume = json_data.get_float("q")
-        data_obj.takerBuyBaseAssetVolume = json_data.get_float("V")
-        data_obj.takerBuyQuoteAssetVolume = json_data.get_float("Q")
+        data_obj.baseVolume = json_data.get_float("q")
+        data_obj.takerBuyQuoteAssetVolume = json_data.get_float("V")
+        data_obj.takerBuyBaseAssetVolume = json_data.get_float("Q")
         data_obj.ignore = json_data.get_int("B")
   
         return data_obj
