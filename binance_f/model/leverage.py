@@ -2,7 +2,7 @@ class Leverage:
 
     def __init__(self):
         self.leverage = 0.0
-        self.symbol = 0.0
+        self.maxNotionalValue = 0.0
         self.symbol = ""
 
     @staticmethod

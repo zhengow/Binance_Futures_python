@@ -455,3 +455,155 @@ class RequestClient(object):
         response = call_sync(self.request_impl.close_user_data_stream())
         self.refresh_limits(response[1])
         return response[0]
+
+    def get_open_interest_stats(self, symbol: 'str', period: 'str', startTime: 'str' = None, endTime: 'str' = None, limit: 'int' = 30) -> any:
+        """
+        Open Interest Statistics (MARKET_DATA)
+
+        GET /futures/data/openInterestHist
+
+        """
+        response = call_sync(self.request_impl.get_open_interest_stats(symbol, period, startTime, endTime, limit))
+        self.refresh_limits(response[1])
+        return response[0]
+
+    def get_top_long_short_accounts(self, symbol: 'str', period: 'str', startTime: 'str' = None, endTime: 'str' = None, limit: 'int' = 30) -> any:
+        """
+        Top Trader Long/Short Ratio (Accounts) (MARKET_DATA)
+
+        GET /futures/data/topLongShortAccountRatio
+
+        """
+        response = call_sync(self.request_impl.get_top_long_short_accounts(symbol, period, startTime, endTime, limit))
+        self.refresh_limits(response[1])
+        return response[0]
+
+    def get_top_long_short_positions(self, symbol: 'str', period: 'str', startTime: 'str' = None, endTime: 'str' = None, limit: 'int' = 30) -> any:
+        """
+        Top Trader Long/Short Ratio (Positions)
+
+        GET /futures/data/topLongShortPositionRatio
+
+        """
+        response = call_sync(self.request_impl.get_top_long_short_positions(symbol, period, startTime, endTime, limit))
+        self.refresh_limits(response[1])
+        return response[0]
+
+    def get_global_long_short_accounts(self, symbol: 'str', period: 'str', startTime: 'str' = None, endTime: 'str' = None, limit: 'int' = 30) -> any:
+        """
+        Long/Short Ratio (MARKET_DATA)
+
+        GET /futures/data/globalLongShortAccountRatio
+
+        """
+        response = call_sync(self.request_impl.get_global_long_short_accounts(symbol, period, startTime, endTime, limit))
+        self.refresh_limits(response[1])
+        return response[0]
+
+    def get_taker_buy_sell_ratio(self, symbol: 'str', period: 'str', startTime: 'str' = None, endTime: 'str' = None, limit: 'int' = 30) -> any:
+        """
+        Long/Short Ratio (MARKET_DATA)
+
+        GET /futures/data/globalLongShortAccountRatio
+
+        """
+        response = call_sync(self.request_impl.get_taker_buy_sell_ratio(symbol, period, startTime, endTime, limit))
+        self.refresh_limits(response[1])
+        return response[0]
+
+    def get_blvt_nav_candlestick_data(self, symbol: 'str', interval: 'CandlestickInterval', 
+                            startTime: 'long' = None, endTime: 'long' = None, limit: 'int' = None) -> any:
+        """
+        Historical BLVT NAV Kline/Candlestick (MARKET_DATA)
+
+        GET /fapi/v1/lvtKlines
+
+        The BLVT NAV system is based on Binance Futures, so the endpoint is based on fapi
+        """
+        response = call_sync(self.request_impl.get_blvt_nav_candlestick_data(symbol, interval, startTime, endTime, limit))
+        self.refresh_limits(response[1])
+        return response[0]
+
+    def get_composite_index_info(self, symbol: 'str') -> any:
+        """
+        Composite Index Symbol Information (MARKET_DATA)
+
+        GET /fapi/v1/indexInfo
+        """
+        response = call_sync(self.request_impl.get_composite_index_info(symbol))
+        self.refresh_limits(response[1])
+        return response[0]
+
+    def auto_cancel_all_orders(self, symbol: 'str', countdownTime: 'long') -> any:
+        """
+        New Order (TRADE)
+
+        Auto-Cancel All Open Orders (TRADE)
+
+        POST /fapi/v1/countdownCancelAll (HMAC SHA256)
+        """
+        response = call_sync(self.request_impl.auto_cancel_all_orders(symbol, countdownTime))
+        self.refresh_limits(response[1])
+        return response[0]
+
+    def get_balance_v2(self) -> any:
+        """
+        Future Account Balance (USER_DATA)
+
+        Get /fapi/v2/balance (HMAC SHA256)
+        """
+        response = call_sync(self.request_impl.get_balance_v2())
+        self.refresh_limits(response[1])
+        return response[0]
+
+    def get_account_information_v2(self) -> any:
+        """
+        Account Information (USER_DATA)
+
+        GET /fapi/v2/account (HMAC SHA256)
+
+        Get current account information.
+        """
+        response = call_sync(self.request_impl.get_account_information_v2())
+        self.refresh_limits(response[1])
+        return response[0]
+
+    def get_position_v2(self) -> any:
+        """
+        Position Information (USER_DATA)
+
+        GET /fapi/v2/positionRisk (HMAC SHA256) Get current account information.
+        """
+        response = call_sync(self.request_impl.get_position_v2())
+        self.refresh_limits(response[1])
+        return response[0]
+
+    def get_leverage_bracket(self, symbol: 'str' = None) -> any:
+        """
+        Notional and Leverage Brackets (USER_DATA)
+
+        GET /fapi/v1/leverageBracket
+        """
+        response = call_sync(self.request_impl.get_leverage_bracket(symbol))
+        self.refresh_limits(response[1])
+        return response[0]
+
+    def get_adl_quantile(self, symbol: 'str' = None) -> any:
+        """
+        Position ADL Quantile Estimation (USER_DATA)
+
+        GET /fapi/v1/adlQuantile
+        """
+        response = call_sync(self.request_impl.get_adl_quantile(symbol))
+        self.refresh_limits(response[1])
+        return response[0]
+
+    def get_api_trading_stats(self, symbol: 'str' = None) -> any:
+        """
+        User API Trading Quantitative Rules Indicators (USER_DATA)
+
+        GET /fapi/v1/apiTradingStatus
+        """
+        response = call_sync(self.request_impl.get_api_trading_stats(symbol))
+        self.refresh_limits(response[1])
+        return response[0]

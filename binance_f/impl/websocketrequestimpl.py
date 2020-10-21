@@ -309,3 +309,87 @@ class WebsocketRequestImpl(object):
         return request
            
  
+    def subscribe_all_mark_price_event(self, callback, error_handler=None):
+        check_should_not_none(callback, "callback")
+
+        def subscription_handler(connection):
+            connection.send(all_mark_price_channel())
+            time.sleep(0.01)
+
+        def json_parse(json_wrapper):
+            result = list()
+            data_list = json_wrapper.convert_2_array()
+            for item in data_list.get_items():
+                element = MarkPriceEvent.json_parse(item)
+            result.append(element)
+            return result
+
+        request = WebsocketRequest()
+        request.subscription_handler = subscription_handler
+        request.json_parser = json_parse
+        request.update_callback = callback
+        request.error_handler = error_handler
+
+        return request
+
+
+    def subscribe_blvt_info_event(self, symbol, callback, error_handler=None):
+        check_should_not_none(symbol, "symbol")
+        check_should_not_none(callback, "callback")
+
+        def subscription_handler(connection):
+            connection.send(blvt_info_channel(symbol))
+            time.sleep(0.01)
+
+        def json_parse(json_wrapper):
+            result = BLVTInfoEvent.json_parse(json_wrapper)
+            return result
+
+        request = WebsocketRequest()
+        request.subscription_handler = subscription_handler
+        request.json_parser = json_parse
+        request.update_callback = callback
+        request.error_handler = error_handler
+
+        return request
+
+    def subscribe_blvt_nav_candlestick_event(self, symbol, interval, callback, error_handler=None):
+        check_should_not_none(symbol, "symbol")
+        check_should_not_none(interval, "interval")
+        check_should_not_none(callback, "callback")
+
+        def subscription_handler(connection):
+            connection.send(blvt_nav_kline_channel(symbol, interval))
+            time.sleep(0.01)
+
+        def json_parse(json_wrapper):
+            result = BLVTNAVCandlestickEvent.json_parse(json_wrapper)
+            return result
+
+        request = WebsocketRequest()
+        request.subscription_handler = subscription_handler
+        request.json_parser = json_parse
+        request.update_callback = callback
+        request.error_handler = error_handler
+
+        return request
+
+    def subscribe_composite_index_event(self, symbol, callback, error_handler=None):
+        check_should_not_none(symbol, "symbol")
+        check_should_not_none(callback, "callback")
+
+        def subscription_handler(connection):
+            connection.send(composite_index_channel(symbol))
+            time.sleep(0.01)
+
+        def json_parse(json_wrapper):
+            result = CompositeIndexEvent.json_parse(json_wrapper)
+            return result
+
+        request = WebsocketRequest()
+        request.subscription_handler = subscription_handler
+        request.json_parser = json_parse
+        request.update_callback = callback
+        request.error_handler = error_handler
+
+        return request
