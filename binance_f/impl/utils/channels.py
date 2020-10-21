@@ -122,3 +122,35 @@ def user_data_channel(listenKey):
     channel["id"] = get_current_timestamp()
     channel["method"] = "SUBSCRIBE"
     return json.dumps(channel)
+
+def all_mark_price_channel():
+    channel = dict()
+    channel["params"] = list()
+    channel["params"].append("!markPrice@arr")
+    channel["id"] = get_current_timestamp()
+    channel["method"] = "SUBSCRIBE"
+    return json.dumps(channel)
+
+def blvt_info_channel(symbol):
+    channel = dict()
+    channel["params"] = list()
+    channel["params"].append(symbol + "@compositeIndex")
+    channel["id"] = get_current_timestamp()
+    channel["method"] = "SUBSCRIBE"
+    return json.dumps(channel)
+
+def blvt_nav_kline_channel(symbol, interval):
+    channel = dict()
+    channel["params"] = list()
+    channel["params"].append(symbol + "@kline_" + interval)
+    channel["id"] = get_current_timestamp()
+    channel["method"] = "SUBSCRIBE"
+    return json.dumps(channel)
+
+def composite_index_channel(symbol):
+    channel = dict()
+    channel["params"] = list()
+    channel["params"].append(symbol + "@compositeIndex")
+    channel["id"] = get_current_timestamp()
+    channel["method"] = "SUBSCRIBE"
+    return json.dumps(channel)

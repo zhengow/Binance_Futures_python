@@ -35,3 +35,18 @@ from binance_f.model.income import Income
 from binance_f.model.accountupdate import AccountUpdate
 from binance_f.model.orderupdate import OrderUpdate
 from binance_f.model.listenkeyexpired import ListenKeyExpired
+
+from binance_f.model.accountinformationv2 import AccountInformationV2
+from binance_f.model.adlquantile import AdlQuantile
+from binance_f.model.apitradingstatus import ApiTradingStatus
+from binance_f.model.balancev2 import BalanceV2
+from binance_f.model.blvtnavcandlestick import BLVTNAVCandlestick
+from binance_f.model.countdowncancelall import CountdownCancelAll
+from binance_f.model.indexInfo import IndexInfo
+from binance_f.model.leveragebracket import LeverageBracket
+from binance_f.model.openintereststats import OpenInterestStats
+from binance_f.model.longshortratio import LongShortRatio
+from binance_f.model.takerbuysellratio import TakerBuySellRatio
+from binance_f.model.blvtinfoevent import BLVTInfoEvent
+from binance_f.model.blvtnavcandlestickevent import BLVTNAVCandlestickEvent
+from binance_f.model.compositeindexevent import CompositeIndexEvent

@@ -220,3 +220,55 @@ class SubscriptionClient(object):
         """
         request = self.websocket_request_impl.subscribe_user_data_event(listenKey, callback, error_handler)
         self.__create_connection(request)
+
+    def subscribe_all_mark_price_event(self, callback, error_handler=None):
+        """
+        Mark Price Stream for All market
+
+        Mark price and funding rate for all symbols pushed every 3 seconds or every second.
+
+        Stream Name: !markPrice@arr or !markPrice@arr@1s
+
+        Update Speed: 3000ms or 1000ms
+        """
+        request = self.websocket_request_impl.subscribe_all_mark_price_event(callback, error_handler)
+        self.__create_connection(request)
+
+    def subscribe_blvt_info_event(self, symbol, callback, error_handler=None):
+        """
+        BLVT Info Streams
+
+        Stream Name: <tokenName>@tokenNav
+
+        Note: tokenName must be uppercase, e.g. "TRXDOWN"
+
+        Update Speed: 300ms
+        """
+        request = self.websocket_request_impl.subscribe_blvt_info_event(symbol, callback, error_handler)
+        self.__create_connection(request)
+
+    def subscribe_blvt_nav_candlestick_event(self, symbol, interval, callback, error_handler=None):
+        """
+        BLVT NAV Kline/Candlestick Streams
+
+        Stream Name: <tokenName>@nav_Kline_<interval>
+
+        Note: tokenName must be uppercase, e.g. "TRXDOWN"
+
+        Update Speed: 300ms
+        """
+        request = self.websocket_request_impl.subscribe_blvt_nav_candlestick_event(symbol, interval, callback, error_handler)
+        self.__create_connection(request)
+
+    def subscribe_composite_index_event(self, symbol, callback, error_handler=None):
+        """
+        Composite Index Symbol Information Streams
+
+        Composite index information for index symbols pushed every second.
+
+        Stream Name: <symbol>@compositeIndex
+
+        Update Speed: 1000ms
+        """
+        request = self.websocket_request_impl.subscribe_composite_index_event(symbol, callback, error_handler)
+        self.__create_connection(request)
