@@ -454,6 +454,7 @@ class RestApiRequestImpl(object):
 
 
     def get_position_mode(self):
+        builder = UrlParamsBuilder()
         
         request = self.__create_request_by_get_with_signature("/dapi/v1/positionSide/dual", builder)
 
@@ -605,21 +606,21 @@ class RestApiRequestImpl(object):
         request.json_parser = parse
         return request
 
-    # def get_balance(self):
-    #     builder = UrlParamsBuilder()
+    def get_balance(self):
+        builder = UrlParamsBuilder()
 
-    #     request = self.__create_request_by_get_with_signature("/dapi/v1/balance", builder)
+        request = self.__create_request_by_get_with_signature("/dapi/v1/balance", builder)
 
-    #     def parse(json_wrapper):
-    #         result = list()
-    #         data_list = json_wrapper.convert_2_array()
-    #         for item in data_list.get_items():
-    #             element = Balance.json_parse(item)
-    #             result.append(element)
-    #         return result
+        def parse(json_wrapper):
+            result = list()
+            data_list = json_wrapper.convert_2_array()
+            for item in data_list.get_items():
+                element = Balance.json_parse(item)
+                result.append(element)
+            return result
 
-    #     request.json_parser = parse
-    #     return request
+        request.json_parser = parse
+        return request
 
     def get_account_information(self):
         builder = UrlParamsBuilder()
@@ -801,3 +802,184 @@ class RestApiRequestImpl(object):
         request.json_parser = parse
         return request
       
+
+    def get_open_interest_stats(self, pair, contractType, period, startTime, endTime, limit):
+        builder = UrlParamsBuilder()
+        builder.put_url("pair", pair)
+        builder.put_url("contractType", contractType)
+        builder.put_url("period", period)
+        builder.put_url("startTime", startTime)
+        builder.put_url("endTime", endTime)
+        builder.put_url("limit", limit)
+
+        request = self.__create_request_by_get("/futures/data/openInterestHist", builder)
+
+        def parse(json_wrapper):
+            result = list()
+            data_list = json_wrapper.convert_2_array()
+            for item in data_list.get_items():
+                element = OpenInterestStats.json_parse(item)
+                result.append(element)
+            return result
+
+        request.json_parser = parse
+        return request
+
+    def get_top_long_short_accounts(self, pair, period, startTime, endTime, limit):
+        builder = UrlParamsBuilder()
+        builder.put_url("pair", pair)
+        builder.put_url("period", period)
+        builder.put_url("startTime", startTime)
+        builder.put_url("endTime", endTime)
+        builder.put_url("limit", limit)
+
+        request = self.__create_request_by_get("/futures/data/topLongShortAccountRatio", builder)
+
+        def parse(json_wrapper):
+            result = list()
+            data_list = json_wrapper.convert_2_array()
+            for item in data_list.get_items():
+                element = LongShortAccounts.json_parse(item)
+                result.append(element)
+            return result
+
+        request.json_parser = parse
+        return request
+
+    def get_top_long_short_positions(self, pair, period, startTime, endTime, limit):
+        builder = UrlParamsBuilder()
+        builder.put_url("pair", pair)
+        builder.put_url("period", period)
+        builder.put_url("startTime", startTime)
+        builder.put_url("endTime", endTime)
+        builder.put_url("limit", limit)
+
+        request = self.__create_request_by_get("/futures/data/topLongShortPositionRatio", builder)
+
+        def parse(json_wrapper):
+            result = list()
+            data_list = json_wrapper.convert_2_array()
+            for item in data_list.get_items():
+                element = LongShortPositions.json_parse(item)
+                result.append(element)
+            return result
+
+        request.json_parser = parse
+        return request
+
+    def get_global_long_short_accounts(self, pair, period, startTime, endTime, limit):
+        builder = UrlParamsBuilder()
+        builder.put_url("pair", pair)
+        builder.put_url("period", period)
+        builder.put_url("startTime", startTime)
+        builder.put_url("endTime", endTime)
+        builder.put_url("limit", limit)
+
+        request = self.__create_request_by_get("/futures/data/globalLongShortAccountRatio", builder)
+
+        def parse(json_wrapper):
+            result = list()
+            data_list = json_wrapper.convert_2_array()
+            for item in data_list.get_items():
+                element = LongShortAccounts.json_parse(item)
+                result.append(element)
+            return result
+
+        request.json_parser = parse
+        return request
+
+    def get_taker_buy_sell_vol(self, pair, contractType, period, startTime, endTime, limit):
+        builder = UrlParamsBuilder()
+        builder.put_url("pair", pair)
+        builder.put_url("contractType", contractType)
+        builder.put_url("period", period)
+        builder.put_url("startTime", startTime)
+        builder.put_url("endTime", endTime)
+        builder.put_url("limit", limit)
+
+        request = self.__create_request_by_get("/futures/data/takerBuySellVol", builder)
+
+        def parse(json_wrapper):
+            result = list()
+            data_list = json_wrapper.convert_2_array()
+            for item in data_list.get_items():
+                element = TakerBuySellVol.json_parse(item)
+                result.append(element)
+            return result
+
+        request.json_parser = parse
+        return request
+
+    def get_basis(self, pair, contractType, period, startTime, endTime, limit):
+        builder = UrlParamsBuilder()
+        builder.put_url("pair", pair)
+        builder.put_url("contractType", contractType)
+        builder.put_url("period", period)
+        builder.put_url("startTime", startTime)
+        builder.put_url("endTime", endTime)
+        builder.put_url("limit", limit)
+
+        request = self.__create_request_by_get("/futures/data/basis", builder)
+
+        def parse(json_wrapper):
+            result = list()
+            data_list = json_wrapper.convert_2_array()
+            for item in data_list.get_items():
+                element = Basis.json_parse(item)
+                result.append(element)
+            return result
+
+        request.json_parser = parse
+        return request
+
+    def auto_cancel_all_orders(self, symbol, countdownTime):
+        check_should_not_none(symbol, "symbol")
+        check_should_not_none(symbol, "countdownTime")
+        builder = UrlParamsBuilder()
+        builder.put_url("symbol", symbol)
+        builder.put_url("countdownTime", countdownTime)
+
+        request = self.__create_request_by_post_with_signature("/dapi/v1/countdownCancelAll", builder)
+
+        def parse(json_wrapper):
+            result = CountdownCancelAll.json_parse(json_wrapper)
+            return result
+
+        request.json_parser = parse
+        return request
+
+    def get_leverage_bracket(self, pair):
+        builder = UrlParamsBuilder()
+        builder.put_url("pair", pair)
+
+        request = self.__create_request_by_get_with_signature("/dapi/v1/leverageBracket", builder)
+
+        def parse(json_wrapper):
+            result = list()
+
+            data_list = json_wrapper.convert_2_array()
+            for item in data_list.get_items():
+                element = LeverageBracket.json_parse(item)
+                result.append(element)
+
+            return result
+
+        request.json_parser = parse
+        return request
+
+    def get_adl_quantile(self, symbol):
+        builder = UrlParamsBuilder()
+        builder.put_url("symbol", symbol)
+
+        request = self.__create_request_by_get_with_signature("/dapi/v1/adlQuantile", builder)
+
+        def parse(json_wrapper):
+            result = list()
+            data_list = json_wrapper.convert_2_array()
+            for item in data_list.get_items():
+                element = AdlQuantile.json_parse(item)
+                result.append(element)
+            return result
+
+        request.json_parser = parse
+        return request

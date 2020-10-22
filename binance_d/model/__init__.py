@@ -40,3 +40,12 @@ from binance_d.model.income import Income
 from binance_d.model.accountupdate import AccountUpdate
 from binance_d.model.orderupdate import OrderUpdate
 from binance_d.model.listenkeyexpired import ListenKeyExpired
+
+from binance_d.model.adlquantile import AdlQuantile
+from binance_d.model.basis import Basis
+from binance_d.model.countdowncancelall import CountdownCancelAll
+from binance_d.model.leveragebracket import LeverageBracket
+from binance_d.model.longshortaccounts import LongShortAccounts
+from binance_d.model.longshortpositions import LongShortPositions
+from binance_d.model.takerbuysellVol import TakerBuySellVol
+from binance_d.model.openintereststats import OpenInterestStats

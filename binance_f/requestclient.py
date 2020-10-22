@@ -502,9 +502,9 @@ class RequestClient(object):
 
     def get_taker_buy_sell_ratio(self, symbol: 'str', period: 'str', startTime: 'str' = None, endTime: 'str' = None, limit: 'int' = 30) -> any:
         """
-        Long/Short Ratio (MARKET_DATA)
+        Taker Buy/Sell Volume(MARKET_DATA)
 
-        GET /futures/data/globalLongShortAccountRatio
+        GET /futures/data/takerlongshortRatio
 
         """
         response = call_sync(self.request_impl.get_taker_buy_sell_ratio(symbol, period, startTime, endTime, limit))
@@ -536,8 +536,6 @@ class RequestClient(object):
 
     def auto_cancel_all_orders(self, symbol: 'str', countdownTime: 'long') -> any:
         """
-        New Order (TRADE)
-
         Auto-Cancel All Open Orders (TRADE)
 
         POST /fapi/v1/countdownCancelAll (HMAC SHA256)

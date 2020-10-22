@@ -358,15 +358,15 @@ class RequestClient(object):
         self.refresh_limits(response[1])
         return response[0]
 
-    # def get_balance(self) -> any:
-    #     """
-    #     Future Account Balance (USER_DATA)
+    def get_balance(self) -> any:
+        """
+        Future Account Balance (USER_DATA)
 
-    #     Get /dapi/v1/balance (HMAC SHA256)
-    #     """
-    #     response = call_sync(self.request_impl.get_balance())
-    #     self.refresh_limits(response[1])
-    #     return response[0]
+        Get /dapi/v1/balance (HMAC SHA256)
+        """
+        response = call_sync(self.request_impl.get_balance())
+        self.refresh_limits(response[1])
+        return response[0]
 
     def get_account_information(self) -> any:
         """
@@ -492,5 +492,103 @@ class RequestClient(object):
         Close out a user data stream.
         """
         response = call_sync(self.request_impl.close_user_data_stream())
+        self.refresh_limits(response[1])
+        return response[0]
+
+    def get_open_interest_stats(self, pair: 'str', contractType: 'str', period: 'str', startTime: 'str' = None, endTime: 'str' = None, limit: 'int' = 30) -> any:
+        """
+        Open Interest Statistics (MARKET_DATA)
+
+        GET /futures/data/openInterestHist
+
+        """
+        response = call_sync(self.request_impl.get_open_interest_stats(pair, contractType, period, startTime, endTime, limit))
+        self.refresh_limits(response[1])
+        return response[0]
+
+    def get_top_long_short_accounts(self, pair: 'str', period: 'str', startTime: 'str' = None, endTime: 'str' = None, limit: 'int' = 30) -> any:
+        """
+        Top Trader Long/Short Ratio (Accounts) (MARKET_DATA)
+
+        GET /futures/data/topLongShortAccountRatio
+
+        """
+        response = call_sync(self.request_impl.get_top_long_short_accounts(pair, period, startTime, endTime, limit))
+        self.refresh_limits(response[1])
+        return response[0]
+
+    def get_top_long_short_positions(self, pair: 'str', period: 'str', startTime: 'str' = None, endTime: 'str' = None, limit: 'int' = 30) -> any:
+        """
+        Top Trader Long/Short Ratio (Positions)
+
+        GET /futures/data/topLongShortPositionRatio
+
+        """
+        response = call_sync(self.request_impl.get_top_long_short_positions(pair, period, startTime, endTime, limit))
+        self.refresh_limits(response[1])
+        return response[0]
+
+    def get_global_long_short_accounts(self, pair: 'str', period: 'str', startTime: 'str' = None, endTime: 'str' = None, limit: 'int' = 30) -> any:
+        """
+        Long/Short Ratio (MARKET_DATA)
+
+        GET /futures/data/globalLongShortAccountRatio
+
+        """
+        response = call_sync(self.request_impl.get_global_long_short_accounts(pair, period, startTime, endTime, limit))
+        self.refresh_limits(response[1])
+        return response[0]
+
+    def get_taker_buy_sell_vol(self, pair: 'str', contractType: 'str', period: 'str', startTime: 'str' = None, endTime: 'str' = None, limit: 'int' = 30) -> any:
+        """
+        Taker Buy/Sell Volume (MARKET_DATA)
+
+        GET /futures/data/takerBuySellVol
+
+        """
+        response = call_sync(self.request_impl.get_taker_buy_sell_vol(pair, contractType, period, startTime, endTime, limit))
+        self.refresh_limits(response[1])
+        return response[0]
+
+    def get_basis(self, pair: 'str', contractType: 'str', period: 'str', startTime: 'str' = None, endTime: 'str' = None, limit: 'int' = 30) -> any:
+        """
+        Basis (MARKET DATA)
+
+        GET /futures/data/basis
+
+        """
+        response = call_sync(self.request_impl.get_basis(pair, contractType, period, startTime, endTime, limit))
+        self.refresh_limits(response[1])
+        return response[0]
+
+    def auto_cancel_all_orders(self, symbol: 'str', countdownTime: 'long') -> any:
+        """
+        Auto-Cancel All Open Orders (TRADE)
+
+        POST /dapi/v1/countdownCancelAll (HMAC SHA256)
+
+        Cancel all open orders of the specified symbol at the end of the specified countdown.
+        """
+        response = call_sync(self.request_impl.auto_cancel_all_orders(symbol, countdownTime))
+        self.refresh_limits(response[1])
+        return response[0]
+
+    def get_leverage_bracket(self, pair: 'str' = None) -> any:
+        """
+        Notional and Leverage Brackets (USER_DATA)
+
+        GET /dapi/v1/leverageBracket
+        """
+        response = call_sync(self.request_impl.get_leverage_bracket(pair))
+        self.refresh_limits(response[1])
+        return response[0]
+
+    def get_adl_quantile(self, symbol: 'str' = None) -> any:
+        """
+        Position ADL Quantile Estimation (USER_DATA)
+
+        GET /dapi/v1/adlQuantile
+        """
+        response = call_sync(self.request_impl.get_adl_quantile(symbol))
         self.refresh_limits(response[1])
         return response[0]
