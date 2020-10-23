@@ -1,4 +1,4 @@
-class BalanceV2:
+class Balance:
 
     def __init__(self):
         self.accountAlias = ""
@@ -11,7 +11,7 @@ class BalanceV2:
 
     @staticmethod
     def json_parse(json_data):
-        result = BalanceV2()
+        result = Balance()
         result.accountAlias = json_data.get_string("accountAlias")
         result.asset = json_data.get_string("asset")
         result.balance = json_data.get_float("balance")

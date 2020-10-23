@@ -267,3 +267,14 @@ class SubscriptionClient(object):
         """
         request = self.websocket_request_impl.subscribe_user_data_event(listenKey, callback, error_handler)
         self.__create_connection(request)
+
+    def subscribe_pair_mark_price_event(self, pair: 'str', callback, error_handler=None):
+        """
+        Mark Price of All Symbols of a Pair
+
+        Stream Name: <pair>@markPrice OR <pair>@markPrice@1s
+
+        Update Speed: 3000ms or 1000ms
+        """
+        request = self.websocket_request_impl.subscribe_pair_mark_price_event(pair, callback, error_handler)
+        self.__create_connection(request)

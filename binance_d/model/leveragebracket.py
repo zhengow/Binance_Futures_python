@@ -4,7 +4,7 @@ class Bracket:
         self.bracket = 0
         self.initialLeverage = 0
         self.qtyCap = 0.0
-        self.qtylFloor = 0.0
+        self.qtyFloor = 0.0
         self.maintMarginRatio = 0.0
         
     @staticmethod
@@ -13,7 +13,7 @@ class Bracket:
         result.bracket = json_data.get_int("bracket")
         result.initialLeverage = json_data.get_int("initialLeverage")
         result.qtyCap = json_data.get_float("qtyCap")
-        result.qtylFloor = json_data.get_float("qtylFloor")
+        result.qtyFloor = json_data.get_float("qtyFloor")
         result.maintMarginRatio = json_data.get_float("maintMarginRatio")
         return result
 

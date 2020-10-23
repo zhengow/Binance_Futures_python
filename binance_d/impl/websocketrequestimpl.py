@@ -391,5 +391,27 @@ class WebsocketRequestImpl(object):
         request.error_handler = error_handler
 
         return request
-           
- 
+
+    def subscribe_pair_mark_price_event(self, pair, callback, error_handler=None):
+        check_should_not_none(callback, "pair")
+        check_should_not_none(callback, "callback")
+
+        def subscription_handler(connection):
+            connection.send(mark_price_channel(pair))
+            time.sleep(0.01)
+
+        def json_parse(json_wrapper):
+            result = list()
+            data_list = json_wrapper.convert_2_array()
+            for item in data_list.get_items():
+                element = MarkPriceEvent.json_parse(item)
+            result.append(element)
+            return result
+
+        request = WebsocketRequest()
+        request.subscription_handler = subscription_handler
+        request.json_parser = json_parse
+        request.update_callback = callback
+        request.error_handler = error_handler
+
+        return request
