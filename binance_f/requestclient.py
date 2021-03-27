@@ -247,6 +247,18 @@ class RequestClient(object):
                 timeInForce, quantity, reduceOnly, price, newClientOrderId, stopPrice, workingType, closePosition, positionSide, callbackRate, activationPrice, newOrderRespType))
         self.refresh_limits(response[1])
         return response[0]
+    
+    def post_list_orders(self, batchOrders: 'list') -> any:
+        """
+        Post Multiple Orders (TRADE)
+
+        POST /fapi/v1/batchOrders (HMAC SHA256)
+
+        Send in few orders.
+        """
+        response = call_sync(self.request_impl.post_list_orders(batchOrders))
+        self.refresh_limits(response[1])
+        return response[0]
 
     def get_order(self, symbol: 'str', orderId: 'long' = None, origClientOrderId: 'str' = None) -> any:
         """

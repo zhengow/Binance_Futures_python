@@ -426,6 +426,27 @@ class RestApiRequestImpl(object):
         request.json_parser = parse
         return request
 
+    def post_list_orders(self, batchOrders):
+        check_should_not_none(batchOrders, "batchOrders")
+        builder = UrlParamsBuilder()
+        builder.put_url("batchOrders", batchOrders)
+
+        request = self.__create_request_by_post_with_signature("/fapi/v1/order", builder)
+
+        def parse(json_wrapper):
+            result = list()
+            data_list = json_wrapper.convert_2_array()
+            for item in data_list.get_items():
+                if item.contain_key("code"):
+                    element = Msg.json_parse(item)
+                else:
+                    element = Order.json_parse(item)
+                result.append(element)
+            return result
+
+        request.json_parser = parse
+        return request
+
     def get_order(self, symbol, orderId, origClientOrderId):
         check_should_not_none(symbol, "symbol")
         builder = UrlParamsBuilder()
