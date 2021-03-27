@@ -431,7 +431,7 @@ class RestApiRequestImpl(object):
         builder = UrlParamsBuilder()
         builder.put_url("batchOrders", batchOrders)
 
-        request = self.__create_request_by_post_with_signature("/fapi/v1/order", builder)
+        request = self.__create_request_by_post_with_signature("/fapi/v1/batchOrders", builder)
 
         def parse(json_wrapper):
             result = list()
